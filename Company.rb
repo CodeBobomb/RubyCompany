@@ -28,7 +28,7 @@ class Team
 	end
 
 
-	def name
+	def getName
 		@name
 	end
 
@@ -53,21 +53,44 @@ class Company
 			project==name
 		end
 
-		projects.remove(name)
-
+		@projects.delete(name)
 	end
 
-	end
+	def listProjects
+		puts "Currently active projects: "
+		@projects.each do |project|
+			puts "Project #{project}"
+		end
+	end 
+
 
 	def assignTeam(project, team_name)
 		@teams[Team.new(team_name)]=project
+		puts @teams.size
 	end
 
-	def Team(team_name)
-		@teams.select do |team,project| 
-			team.name=team_name
+	def listTeams
+		@teams.each do |team, project|
+			puts "\"#{team.getName}\" on project:\"#{project}\" "
 		end
 	end
+
+	def getTeam(team_name)
+		tim=@teams.select do |team, project|
+			team.getName==team_name
+		end
+
+		tim.keys[0]
+
+	end
+
+	def Teams(project_name)
+		selected=@teams.select do |team, project|
+					project==project_name
+					end
+		selected.keys
+	end
+
 
 
 end
