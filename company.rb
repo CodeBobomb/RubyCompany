@@ -1,9 +1,13 @@
-require './Employee'
-require './Developer'
-require './Manager'
-require './Accountant'
+require './employee'
+require './developer'
+require './manager'
+require './accountant'
 
 class Team
+
+	attr_reader :developers
+	attr_reader :manager
+	attr_reader :name
 
 	def initialize(name)
 		@name=name
@@ -11,31 +15,21 @@ class Team
 		@developers=[]
 	end
 
-	def assignManager(manager)
+	def assign_manager(manager)
 		@manager=manager;
 	end
 
-	def addDeveloper(developer)
+	def add_developer(developer)
 		@developers << developer
 	end
-
-	def getDevelopers
-		@developers
-	end
-
-	def getManager
-		@manager
-	end
-
-
-	def getName
-		@name
-	end
-
-
 end
 
 class Company
+
+	attr_reader :name
+	attr_reader :employees
+	attr_reader :projects
+	attr_reader :teams
 
 	def initialize(name)
 		@name=name
@@ -44,11 +38,11 @@ class Company
 		@teams = {}
 	end
 
-	def addProject(name)
+	def add_project(name)
 		@projects << name
 	end
 
-	def removeProject(name)
+	def remove_project(name)
 		@teams.delete_if do |team,project|
 			project==name
 		end
@@ -56,7 +50,7 @@ class Company
 		@projects.delete(name)
 	end
 
-	def listProjects
+	def list_projects
 		puts "Currently active projects: "
 		@projects.each do |project|
 			puts "Project #{project}"
@@ -64,33 +58,29 @@ class Company
 	end 
 
 
-	def assignTeam(project, team_name)
+	def assign_team(project, team_name)
 		@teams[Team.new(team_name)]=project
 		puts @teams.size
 	end
 
-	def listTeams
+	def list_teams
 		@teams.each do |team, project|
-			puts "\"#{team.getName}\" on project:\"#{project}\" "
+			puts "\"#{team.name}\" on project:\"#{project}\" "
 		end
 	end
 
-	def getTeam(team_name)
+	def find_team(team_name)
 		tim=@teams.select do |team, project|
-			team.getName==team_name
+			team.name==team_name
 		end
 
 		tim.keys[0]
-
 	end
 
-	def Teams(project_name)
+	def select_teams(project_name)
 		selected=@teams.select do |team, project|
 					project==project_name
 					end
 		selected.keys
 	end
-
-
-
 end
