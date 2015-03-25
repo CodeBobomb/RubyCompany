@@ -1,6 +1,6 @@
 require "./RubyCompany/Employee"
 
-class ScrumMaster < Employee
+class Manager < Employee
 
 	def initialize(first, last, id=0)
 		super(first,last,id)
