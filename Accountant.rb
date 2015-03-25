@@ -1,4 +1,4 @@
-require "./RubyCompany/Employee"
+require './Employee'
 
 
 

@@ -7,7 +7,7 @@ public
 	def initialize(first, last, id=0)
 		@first_name=first
 		@last_name=last
-		@id=@@num unless id==0
+		id==0 ? @id=@@num : @id=id 
 		@@num+=1;
 	end
 
@@ -27,7 +27,7 @@ public
 		@wage=wage
 	end
 
-	def setWorkingDays(*days)
+	def setWorkingDays(days)
 		@days=days
 	end
 
@@ -36,7 +36,7 @@ public
 	end
 
 	def calculatePay
-		@wage*@days*@worktime
+		@wage*@days.length*@worktime
 	end
 
 end

@@ -1,12 +1,11 @@
-require "./RubyCompany/Employee"
-require "./RubyCompany/Developer"
-require "./RubyCompany/Manager"
-require "./RubyCompany/Accountant"
+require './Employee'
+require './Developer'
+require './Manager'
+require './Accountant'
 
 class Team
 
-	def initialize(project, name)
-		@project=project
+	def initialize(name)
 		@name=name
 		@manager=nil
 		@developers=[]
@@ -28,7 +27,11 @@ class Team
 		@manager
 	end
 
-	def
+
+	def name
+		@name
+	end
+
 
 end
 
@@ -38,15 +41,33 @@ class Company
 		@name=name
 		@employees = []
 		@projects = []
+		@teams = {}
 	end
 
 	def addProject(name)
 		@projects << name
 	end
 
-	def assignTeam(project, team)
-		@teams[]
+	def removeProject(name)
+		@teams.delete_if do |team,project|
+			project==name
+		end
+
+		projects.remove(name)
+
 	end
 
-	def addMember(team, )
+	end
+
+	def assignTeam(project, team_name)
+		@teams[Team.new(team_name)]=project
+	end
+
+	def Team(team_name)
+		@teams.select do |team,project| 
+			team.name=team_name
+		end
+	end
+
+
 end
