@@ -4,7 +4,6 @@ require './manager'
 require './accountant'
 
 class Team
-
 	attr_reader :developers
 	attr_reader :manager
 	attr_reader :name
@@ -25,62 +24,41 @@ class Team
 end
 
 class Company
-
 	attr_reader :name
 	attr_reader :employees
 	attr_reader :projects
-	attr_reader :teams
+	attr_accessor :assembled_teams
 
 	def initialize(name)
 		@name=name
 		@employees = []
 		@projects = []
-		@teams = {}
+		@assembled_teams = {}
 	end
 
-	def add_project(name)
-		@projects << name
+	def add_project(project_name)
+		@projects << project_name
 	end
 
-	def remove_project(name)
-		@teams.delete_if do |team,project|
-			project==name
-		end
-
-		@projects.delete(name)
+	def remove_project(project_name)
+		@assembled_teams.tap { |at| at.delete(project_name) } if @assembled_teams.key? project_name
+		@projects.delete_if { |project| project == project_name }
 	end
 
 	def list_projects
-		puts "Currently active projects: "
-		@projects.each do |project|
-			puts "Project #{project}"
-		end
-	end 
-
-
-	def assign_team(project, team_name)
-		@teams[Team.new(team_name)]=project
-		puts @teams.size
+		@projects.each { |project| puts "Project #{project}" }
 	end
 
-	def list_teams
-		@teams.each do |team, project|
-			puts "\"#{team.name}\" on project:\"#{project}\" "
-		end
+	def assign_team_to_project(project_name, team)
+		@assembled_teams[project_name] = team 
 	end
 
-	def find_team(team_name)
-		tim=@teams.select do |team, project|
-			team.name==team_name
-		end
-
-		tim.keys[0]
+	def list_assembled_teams
+		@assembled_teams.each { |project, team| puts "Team #{team.name} works on project #{project}" }
 	end
 
-	def select_teams(project_name)
-		selected=@teams.select do |team, project|
-					project==project_name
-					end
-		selected.keys
+	def find_assembled_team(team_name)
+		team = @assembled_teams.select { |project, team| team.name == team_name }
+		team.values[0] if !team.nil?
 	end
 end
