@@ -16,58 +16,43 @@ class Company
 		@teams = {}
 	end
 
-	def add_project(name)
-		@projects << name
+	def add_project(project_name)
+		@projects << project_name
 	end
 
-
-	def remove_project(name)
-		@teams.delete_if do |team,project|
-			project==name
-		end
-
-		@projects.delete(name)
-	end
 
 	def list_projects
 		puts "Currently active projects: "
-		@projects.each do |project|
-			puts "Project #{project}"
-		end
-	end 
+		@projects.each { |project| puts "Project: #{project}" }
+	end 	
 
 
-	def assign_team(project, team_name)
-		@teams[Team.new(team_name)]=project
-		puts @teams.size
+	def remove_project(project_name)
+		@teams.delete_if { |team,project| project==name }
+
+		@projects.delete_if { |project| project==name }
+	end
+
+	def assign_team_to_project(project_name, team)
+		@teams[project_name.to_sym]=team
 	end
 
 	def list_teams
-		@teams.each do |team, project|
-			puts "\"#{team.name}\" on project:\"#{project}\" "
-		end
+		@teams.each { |project, team| puts "Team: \"#{team.name}\" is working on project: \"#{project.to_s}\" "}
 	end
 
 	def find_team(team_name)
-		found=@teams.select { |team, project| team.name==team_name }
-
-		found.keys[0]
+		team=@teams.select { |project, project_team| project_team.name==team_name }
+		team.values[0] unless team.nil?
 	end
 
 	def add_employee(employee)
 		employees << employee
 	end
 
-	def add_to_team(team_name, id)
+	def assign_to_team(team_name, employee_id)
 		team = find_team(team_name)
-		employee=employees.bsearch do |emp| emp.id==id end
-		team.add_developer(emp)
-	end
-
-	def select_teams(project_name)
-		selected=@teams.select do |team, project|
-					project==project_name
-					end
-		selected.keys
+		employee=employees.bsearch { |emp| emp.id==id }
+		team.add_member(emp)
 	end
 end

@@ -3,19 +3,15 @@ require_relative './employee'
 class Developer < Employee
 
 	attr_reader :languages
-	attr_reader :projects
 
 	def initialize(first, last, languages, id=0)
 		super(first,last,id)
 		@languages=languages
-		@projects={}
 	end
 
 	def list_languages
 		print "I know the following programming languages: "
-		@languages.each do |language|
-			print language + " "
-		end
+		@languages.each { |language| print language + " " }
 		print "\n"
 	end
 
@@ -23,9 +19,13 @@ class Developer < Employee
 		@languages << language
 	end
 
+	def write_code(language, amount_of_code)
+		rand(amount_of_code) unless languages.bsearch{ |lang| lang==language }.nil?
+	end
+
 
 	def calculate_pay
-		super + @wage*0.3*@languages.length
+		super + @wage*0.3*@languages.length + @wage*0.1*get_number_of_assign_projects
 	end
 
 end
