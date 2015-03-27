@@ -1,4 +1,4 @@
-require './employee'
+require_relative './employee'
 
 class Manager < Employee
 

@@ -1,28 +1,6 @@
-require './employee'
-require './developer'
-require './manager'
-require './accountant'
+require_relative './team'
 
-class Team
 
-	attr_reader :developers
-	attr_reader :manager
-	attr_reader :name
-
-	def initialize(name)
-		@name=name
-		@manager=nil
-		@developers=[]
-	end
-
-	def assign_manager(manager)
-		@manager=manager;
-	end
-
-	def add_developer(developer)
-		@developers << developer
-	end
-end
 
 class Company
 
@@ -41,6 +19,7 @@ class Company
 	def add_project(name)
 		@projects << name
 	end
+
 
 	def remove_project(name)
 		@teams.delete_if do |team,project|
@@ -70,11 +49,19 @@ class Company
 	end
 
 	def find_team(team_name)
-		tim=@teams.select do |team, project|
-			team.name==team_name
-		end
+		found=@teams.select { |team, project| team.name==team_name }
 
-		tim.keys[0]
+		found.keys[0]
+	end
+
+	def add_employee(employee)
+		employees << employee
+	end
+
+	def add_to_team(team_name, id)
+		team = find_team(team_name)
+		employee=employees.bsearch do |emp| emp.id==id end
+		team.add_developer(emp)
 	end
 
 	def select_teams(project_name)

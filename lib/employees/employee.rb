@@ -1,6 +1,5 @@
+
 class Employee
-	@@num=0
-private
 
 public
 	attr_accessor :first_name
@@ -11,7 +10,6 @@ public
 		@first_name=first
 		@last_name=last
 		id==0 ? @id=@@num : @id=id 
-		@@num+=1;
 		@wage=nil
 		@days=nil
 		@worktime=nil
