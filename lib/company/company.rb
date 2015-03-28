@@ -6,19 +6,14 @@ class Company
 
 	attr_reader :name
 	attr_reader :employees
-	attr_reader :projects
 	attr_reader :teams
 
-	def initialize(name)
+	def initialize(company_name)
 		@name=name
 		@employees = []
-		@projects = []
-		@teams = {}
+		@teams = []
 	end
 
-	def add_project(project_name)
-		@projects << project_name
-	end
 
 
 	def list_projects
@@ -27,43 +22,32 @@ class Company
 	end 	
 
 	def remove_finished_projects
-		@teams.delete_if { |project,team| team.goal_reached?}
+		@teams.delete_if { |team| team.goal_reached? }
 
 	end
 
 	def remove_project(project_name)
-		@teams.delete_if { |team,project| project==name.to_sym }
-
-		@projects.delete_if { |project| project==name }
-	end
-
-	def assign_team_to_project(project_name, team)
-		@teams[project_name.to_sym]=team
+		@teams.delete_if { |team| team.project_name==project_name }
 	end
 
 	def list_teams
-		@teams.each { |project, team| puts "Team: \"#{team.name}\" is working on project: \"#{project.to_s}\" "}
+		@teams.each { |team| puts "#{team.team_name} is working on project: \"#{team.project_name}\" "}
 	end
 
-	def find_team(team_name)
-		team=@teams.select { |project, project_team| project_team.name==team_name }
-		team.values[0] unless team.nil?
+	def find_team_by_project(project_name)
+		@teams.bsearch { |project_team| project_team.project=project_name }
 	end
 
 	def find_employee(employee_id)
 		@employees.bsearch { |emp| emp.id==employee_id }
 	end
 
-	def find_project(project_name)
-		@projects.bsearch { |project| project==project_name.to_sym	 }
-	end
-
 	def add_employee(employee)
 		employees << employee
 	end
 
-	def assign_to_team(team_name, employee_id)
-		team = find_team(team_name)
+	def assign_to_project(project_name, employee_id)
+		team = find_team_by_project(project_name)
 		employee=employees.bsearch { |emp| emp.id==id }
 		team.add_member(emp)
 	end

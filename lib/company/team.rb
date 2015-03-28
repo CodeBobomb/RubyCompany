@@ -24,15 +24,16 @@ public
 	attr_reader :name
 	attr_reader :goal
 
-	def initialize(team_name)
-		@name=name
+	def initialize(project_name,team_name="")
+		@project_name=project_name
+		@team_name=project_name + " team" if team_name!="team"
+		@team_name=team_name unless team_name!="team"
 		@manager=nil
 		@developers=[]
 		@testers=[]
 		@goal={"sprints" => 0, "code_lines" => 0, "tests" => 0 }
 	end
 
-	
 
 	def assign_manager(manager)
 		@manager=manager
