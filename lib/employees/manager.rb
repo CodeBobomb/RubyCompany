@@ -9,6 +9,14 @@ class Manager < Employee
 		@projects={}
 	end
 
+	def create_sprints(team)
+		size=team.number_of_members	
+		sprints=size%10
+		sprints=10 unless sprints!=0
+		sprints 
+	end
+
+
 	def assign_project(name, size)
 		@projects[name]=size
 	end

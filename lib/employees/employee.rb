@@ -35,7 +35,7 @@ public
 	end
 
 	def get_number_of_assigned_projects(assambled_teams)
-			member_of=assambled_teams.select { |team| team.is_member?(@id) }
+			member_of=assambled_teams.select { |team| team.has_member?(@id) }
 			member_of.length
 	end
 

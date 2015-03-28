@@ -19,8 +19,8 @@ class Developer < Employee
 		@languages << language
 	end
 
-	def write_code(language, amount_of_code)
-		rand(amount_of_code) unless languages.bsearch{ |lang| lang==language }.nil?
+	def write_code(lamount_of_code)
+		rand(amount_of_code) 
 	end
 
 

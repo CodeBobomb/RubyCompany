@@ -22,13 +22,17 @@ class Company
 
 
 	def list_projects
-		puts "Currently active projects: "
+		puts "Currently active projects: "	
 		@projects.each { |project| puts "Project: #{project}" }
 	end 	
 
+	def remove_finished_projects
+		@teams.delete_if { |project,team| team.goal_reached?}
+
+	end
 
 	def remove_project(project_name)
-		@teams.delete_if { |team,project| project==name }
+		@teams.delete_if { |team,project| project==name.to_sym }
 
 		@projects.delete_if { |project| project==name }
 	end
@@ -44,6 +48,14 @@ class Company
 	def find_team(team_name)
 		team=@teams.select { |project, project_team| project_team.name==team_name }
 		team.values[0] unless team.nil?
+	end
+
+	def find_employee(employee_id)
+		@employees.bsearch { |emp| emp.id==employee_id }
+	end
+
+	def find_project(project_name)
+		@projects.bsearch { |project| project==project_name.to_sym	 }
 	end
 
 	def add_employee(employee)

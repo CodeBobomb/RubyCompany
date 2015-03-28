@@ -12,7 +12,6 @@ class Tester < Employee
 		rand(number_of_tests/2) if type_of_test=="manual"
 	end
 	
-	
 
 	def report_project(project)
 		@testing[project]>=5
