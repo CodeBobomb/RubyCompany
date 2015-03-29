@@ -65,7 +65,7 @@ public
 	def do_sprint(sprints=1)
 		written_code=0
 		written_tests=0
-		for(i=0;i<sprints;i++)
+		for i in 0..1
 			@developers.each { |dev| written_code+=dev.write_code(@goal[1]/@developers.length) }
 			@testers.each { |tester| written_tests+=tester.write_tests(@goal[2]/@testers.length) }
 		end

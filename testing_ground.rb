@@ -1,9 +1,12 @@
 require_relative './lib/company/company'
+require_relative './lib/company/team'
 require_relative './lib/employees/developer'
+require_relative './lib/employees/tester'
+require_relative './lib/employees/employee'
+require_relative './lib/employees/manager'
+require_relative './menu.rb'
 
 
-new_team = Team.new("testing")
+menu=Menu.new
 
-dev=Developer.new("first","last",1234)
-
-puts rand(123)
+menu.display_menu

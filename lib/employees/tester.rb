@@ -7,17 +7,13 @@ class Tester < Employee
 		super(first, last_name, id)
 	end
 
-	def write_tests(number_of_tests, type_of_test)
+	def write_tests(number_of_tests, type_of_test="automatic")
 		rand(number_of_tests) if type_of_test=="automatic"
 		rand(number_of_tests/2) if type_of_test=="manual"
 	end
 	
 
-	def report_project(project)
-		@testing[project]>=5
-	def
-
 	def calculate_pay
-		super + 
+		super + number_of_assigned_projects*@wage*0.4
 	end
 end

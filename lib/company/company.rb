@@ -4,17 +4,20 @@ require_relative './team'
 
 class Company
 
-	attr_reader :name
+	attr_reader :company_name
 	attr_reader :employees
 	attr_reader :teams
 
 	def initialize(company_name)
-		@name=name
+		@company_name=company_name
 		@employees = []
 		@teams = []
 	end
 
 
+	def add_team_and_project(team)
+		@teams << team
+	end
 
 	def list_projects
 		puts "Currently active projects: "	
