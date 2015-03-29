@@ -24,8 +24,8 @@ class Developer < Employee
 	end
 
 
-	def calculate_pay
-		super + @wage*0.3*@languages.length + @wage*0.1*get_number_of_assign_projects
+	def calculate_pay(working_at=nil)
+		super + @wage*0.3*@languages.length + @wage*0.1*get_number_of_assign_projects(working_at.teams)
 	end
 
 end

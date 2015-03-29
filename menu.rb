@@ -64,7 +64,7 @@ private
 		puts "\nFinished projects removed! "
 	end
 
-	def write_menu
+	def write_comp_menu
 		print "\n"
 		puts "#{@company.company_name} main menu. Enter one of the commands: "
 		puts "\"Add employee\" - if you want to enter a new employee"
@@ -75,10 +75,11 @@ private
 		puts "\"Remove finished\" - clean up and remove finished projects"
 		print "\nYour command: "
 		command=gets.chomp
-		execute_command(command)
+		command.downcase!
+		execute_comp_comm(command)
 	end
 
-	def execute_command(command)
+	def execute_comp_comm(command)
 		case command
 			when "add employee"
 				add_employee
@@ -95,11 +96,111 @@ private
 			else 
 				return
 			end
-		write_menu
+		write_comp_menu
+	end
+
+	def write_dev_menu
+		puts "\n\nDeveloper ( #{emp.first_name} #{emp.last_name} id: #{emp.id} ) enter one of the commands: "
+		puts "\"Add language\" - if you want to add a programming language to your skills "
+		puts "\"List languages\" if you want to list programming languages in your skills"
+		puts "\"Write code \" - write some code"
+		puts "\"Calculate pay\" - if you want to see your salary"
+		print "Enter your command: "
+		command=gets.chomp
+		command.downcase!
+		execute_dev_comm(command)
+	end
+
+	def execute_dev_comm(command)
+		case command
+		when "add langauge"
+			print "Enter the name of the programming language: "
+			lang=gets.chomp
+			emp.add_language(lang)
+			puts "#{lang} added to the known skills"
+		when "list languages"
+			emp.list_languages
+		when "write code"
+			print "Enter the amount of code you have to write: "
+			amount=gets.chomp
+			amount.to_i!
+			puts "You have written #{emp.write_code(amount)} lines of code."
+		when "calculate pay"
+			print "You are currently earning  #{calculate_pay(@company)}$ at your comapny."
+		when "exit"
+			return
+		else
+			write_dev_menu
+		end
 	end
 
 
+	def write_tester_menu
+		puts "\n\nTester ( #{emp.first_name} #{emp.last_name} id: #{emp.id} ) enter one of the commands: "
+		puts "\"Write test\" - write some tests. "
+		puts "\"Calculate pay\" - if you want to see your salary"
+		print "Enter your command: "
+		command=gets.chomp
+		command.downcase!
+		execute_tester_comm(command)
+
+	end
+
+
+	def execute_tester_comm(command)
+		case command
+		when "write test"
+			print "\nWhat kind of tests are you writing (automatic or manual): "
+			type = gets.chomp
+			type.downcase!
+			print "How many tests are you writing:  "
+			amount = gets.chomp
+			amount.to_i!
+			puts "You have managed to write #{emp.write_tests(amount,type) tests }"
+		when "calculate pay"
+			print "You are currently earning  #{calculate_pay(@company)}$ at your comapny."
+		when "exit"
+			return
+		else
+			write_tester_menu
+		end
+	end
+
+
+	def write_man_menu
+		puts "\n\nManager ( #{emp.first_name} #{emp.last_name} id: #{emp.id} ) enter one of the commands: "
+		puts "\"Create sprints\" - if you want to create sprints "
+		puts "\"Calculate pay\" - if you want to see your salary"
+		print "Enter your command: "
+		command=gets.chomp
+		command.downcase!
+		execute_man_comm(command)
+	end
+
+
+	def execute_man_comm(command)
+		case command
+		when "create sprints"
+			print "Enter the name of the team for which you are creating sprints: "
+			team_name=gets.chomp
+			puts "You have created #{emp.create_sprints(@company.find_team_by_name(team_name))} sprints for team: \"#{team_name}\""
+		when "calculate pay"
+			print "You are currently earning  #{calculate_pay(@company)}$ at your comapny."
+		when "exit"
+			return
+		else
+			write_man_menu
+		end
+	end
+
+
+
 public
+
+	def initialize
+		@company=nil
+		@emp=nil
+	end
 	def company_menu(company=nil)
 
 		puts "Welcome to Ruby Company!"
@@ -110,19 +211,20 @@ public
 			@company=Company.new(company_name)
 			puts "#{@company.company_name} was created!"
 		end
-		write_menu
+		write_comp_menu
 	end
 
 	def developer_menu(developer)
-
+		write_dev_menu
 	end
 
 	def manager_menu(manager)
+		write_tester_menu
 
 	end
 
 	def tester_menu(tester)
-
+		write_man_menu
 	end
 
 end

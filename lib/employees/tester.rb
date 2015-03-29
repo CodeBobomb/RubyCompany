@@ -13,7 +13,7 @@ class Tester < Employee
 	end
 	
 
-	def calculate_pay
+	def calculate_pay(working_at=nil)
 		super + number_of_assigned_projects*@wage*0.4
 	end
 end

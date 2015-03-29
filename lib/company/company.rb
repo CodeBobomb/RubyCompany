@@ -41,6 +41,12 @@ class Company
 		@teams.bsearch { |project_team| project_team.project=project_name }
 	end
 
+
+	def find_team_by_name(team_name)
+		@teams.bsearch { |project_team| project_team.team_name=team_name }
+	end
+
+
 	def find_employee(employee_id)
 		@employees.bsearch { |emp| emp.id==employee_id }
 	end

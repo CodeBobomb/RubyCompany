@@ -6,22 +6,20 @@ class Manager < Employee
 
 	def initialize(first, last, id=0)
 		super(first,last,id)
-		@projects={}
+		@sprints=0
 	end
 
 	def create_sprints(team)
 		size=team.number_of_members	
 		sprints=size%10
 		sprints=10 unless sprints!=0
+		@sprints+=1
 		sprints 
 	end
 
 
-	def assign_project(name, size)
-		@projects[name]=size
-	end
 
-	def calculate_pay
-		super + @wage*0.5*projects.length
+	def calculate_pay(working_at=nil)
+		super + @wage*0.5*(number_of_assigned_projects+@sprints)
 	end
 end
