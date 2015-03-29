@@ -71,6 +71,7 @@ public
 		end
 
 		update_goal(sprints, written_code,written_tests)
+		[sprints,written_code,written_tests]
 	end
 
 	def add_member(employee_id)
