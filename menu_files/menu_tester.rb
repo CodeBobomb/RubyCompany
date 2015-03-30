@@ -9,7 +9,7 @@ class Menu
 private
 	
 	def write_tester_menu
-		puts "\n\nTester ( #{emp.first_name} #{emp.last_name} id: #{emp.id} ) enter one of the commands: "
+		puts "\n\nTester ( #{@emp.first_name} #{@emp.last_name} id: #{@emp.id} ) enter one of the commands: "
 		puts "\"Write test\" - write some tests. "
 		puts "\"Calculate pay\" - if you want to see your salary"
 		print "Enter your command: "
@@ -27,9 +27,9 @@ private
 			type = gets.chomp
 			type.downcase!
 			print "How many tests are you writing:  "
-			amount = gets.chomp
-			amount.to_i!
-			puts "You have managed to write #{emp.write_tests(amount,type)} tests "
+			amount_s = gets.chomp
+			amount=amount_s.to_i
+			puts "You have managed to write #{@emp.write_tests(amount,type)} tests "
 		when "calculate pay"
 			print "You are currently earning  #{calculate_pay(@company)}$ at your comapny."
 		when "exit"
@@ -43,7 +43,8 @@ public
 	
 	
 	def tester_menu(tester)
-		write_man_menu
+		@emp=tester
+		write_tester_menu
 	end
 	
 end

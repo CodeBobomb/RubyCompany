@@ -4,9 +4,9 @@ class Developer < Employee
 
 	attr_reader :languages
 
-	def initialize(first, last, languages, id=0)
+	def initialize(first, last, id=0)
 		super(first,last,id)
-		@languages=languages
+		@languages=[]
 	end
 
 	def list_languages
@@ -19,13 +19,13 @@ class Developer < Employee
 		@languages << language
 	end
 
-	def write_code(lamount_of_code)
+	def write_code(amount_of_code)
 		rand(amount_of_code) 
 	end
 
 
 	def calculate_pay(working_at=nil)
-		super + @wage*0.3*@languages.length + @wage*0.1*get_number_of_assign_projects(working_at.teams)
+		super + @wage*0.3*@languages.length + @wage*0.1*get_number_of_assigned_projects(working_at.teams)
 	end
 
 end

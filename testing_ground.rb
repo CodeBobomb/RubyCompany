@@ -8,3 +8,5 @@ require_relative './menu'
 
 
 menu=Menu.new
+
+menu.company_menu

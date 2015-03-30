@@ -54,16 +54,17 @@ private
 			work_done=@team.do_sprint(num_sprints)
 			puts "Team has done #{work_done[0]} sprints, wrote #{work_done[1]} lines of code and performed #{work_done[2]} tests. "
 		when "exit"
+			@team=nil
 			return
-		else
-			write_tester_menu
 		end
+		write_tester_menu
 	end
 
 
 public
 
 	def team_menu(team)
+		@team=team
 		write_team_menu
 	end
 

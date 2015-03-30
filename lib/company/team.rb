@@ -23,6 +23,8 @@ public
 	attr_reader :manager
 	attr_reader :name
 	attr_reader :goal
+	attr_reader :project_name
+	attr_reader :team_name
 
 	def initialize(project_name,team_name="")
 		@project_name=project_name
@@ -74,7 +76,7 @@ public
 		[sprints,written_code,written_tests]
 	end
 
-	def add_member(employee_id)
+	def add_member(employee)
 		case employee.class.name		
 		when "Developer"
 			add_developer(employee)
@@ -88,7 +90,7 @@ public
 	end
 
 	def has_member?(employee_id)
-		@manager.id==employee_id || @developers.bsearch { |dev| dev.id==employee_i? } || @testers.bsearch { |tester| tester.id==employee_id}
+		@manager.id==employee_id || @developers.select { |dev| dev.id==employee_id }[0] || @testers.select { |tester| tester.id==employee_id }
 	end
 
 end

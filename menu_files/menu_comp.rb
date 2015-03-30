@@ -4,10 +4,27 @@ require_relative '../lib/employees/developer'
 require_relative '../lib/employees/tester'
 require_relative '../lib/employees/employee'
 require_relative '../lib/employees/manager'
+require_relative './menu_man'
+require_relative './menu_dev'
+require_relative './menu_tester'
+require_relative './menu_team'
 
 class Menu
 
 private
+
+
+	def select_menu(employee)
+		case employee.class.name
+		when "Developer"
+			developer_menu(employee)
+		when "Tester"
+			tester_menu(employee)
+		when "Manager"
+			manager_menu(employee)
+		end
+	end
+
 
 	def add_employee
 		puts "\nNew employee menu."
@@ -39,16 +56,18 @@ private
 	end
 
 	def select_employee
-		puts "\nEnter employee id: "
+		print "\nEnter employee id: "
 		emp_id=gets.chomp
-		emp_id=emp_id.to_i!
-		employee=@company.find_employee(emp_id)
+		emp_id=emp_id.to_i
+		emp=@company.find_employee(emp_id)
+		select_menu(emp)
 	end
 
 	def select_team
-		puts "\nEnter project name: "
+		print "\nEnter project name: "
 		project_name=gets.chomp
 		team=@company.find_team_by_project(project_name)
+		team_menu(team)
 		
 	end
 
@@ -101,15 +120,7 @@ private
 public
 
 	def company_menu(company=nil)
-
-		puts "Welcome to Ruby Company!"
-		if company.nil?
-			puts "Create your company!"
-			print "Enter your comapny name: "
-			company_name=gets.chomp
-			@company=Company.new(company_name)
-			puts "#{@company.company_name} was created!"
-		end
+		puts "Welcome to Ruby Company!"	
 		write_comp_menu
 	end
 

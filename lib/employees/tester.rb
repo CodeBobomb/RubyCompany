@@ -8,8 +8,8 @@ class Tester < Employee
 	end
 
 	def write_tests(number_of_tests, type_of_test="automatic")
-		rand(number_of_tests) if type_of_test=="automatic"
-		rand(number_of_tests/2) if type_of_test=="manual"
+		return rand(number_of_tests/2) if type_of_test=="manual"
+		rand(number_of_tests) 
 	end
 	
 

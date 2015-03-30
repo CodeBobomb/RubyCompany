@@ -38,21 +38,26 @@ class Company
 	end
 
 	def find_team_by_project(project_name)
-		@teams.bsearch { |project_team| project_team.project=project_name }
+		@teams.select { |team| team.project_name == project_name }[0]
 	end
 
 
 	def find_team_by_name(team_name)
-		@teams.bsearch { |project_team| project_team.team_name=team_name }
+		@teams.select { |project_team| project_team.team_name == team_name }[0]
 	end
 
 
 	def find_employee(employee_id)
-		@employees.bsearch { |emp| emp.id==employee_id }
+		selected=@employees.select { |emp| emp.id==employee_id }
+		selected[0]
 	end
 
 	def add_employee(employee)
-		employees << employee
+		@employees << employee
+	end
+
+	def list_employees
+		@employees.each { |emp| puts "#{emp.id}"}
 	end
 
 	def assign_to_project(project_name, employee_id)
