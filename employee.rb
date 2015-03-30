@@ -1,8 +1,5 @@
 class Employee
 	@@num=0
-private
-
-public
 	attr_accessor :first_name
 	attr_accessor :last_name
 	attr_reader :id
@@ -30,7 +27,7 @@ public
 	end
 
 	def calculate_pay
-		@wage*@days.length*@worktime
+		@wage*@days*@worktime
 	end
 
 end

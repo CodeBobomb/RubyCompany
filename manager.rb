@@ -6,14 +6,13 @@ class Manager < Employee
 
 	def initialize(first, last, id=0)
 		super(first,last,id)
-		@projects={}
 	end
 
-	def assign_project(name, size)
-		@projects[name]=size
+	def get_number_of_assigned_projects(manager_name, assembled_teams)
+		@projects = assembled_teams.select { |project, name| manager_name == name.manager }.length
 	end
 
 	def calculate_pay
-		super + @wage*0.5*projects.length
+		super + @wage*20*@projects
 	end
 end

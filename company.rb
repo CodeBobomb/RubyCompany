@@ -55,6 +55,7 @@ class Company
 
 	def list_assembled_teams
 		@assembled_teams.each { |project, team| puts "Team #{team.name} works on project #{project}" }
+		return @assembled_teams
 	end
 
 	def find_assembled_team(team_name)
