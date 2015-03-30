@@ -10,6 +10,7 @@ private
 
 	
 	def write_team_menu
+# team object is nil
 		puts "\n\nTeam #{team.team_name} project #{team.project_name} enter one of the commands: "
 		puts "\"assing manager\" - assing a manager to your team"
 		puts "\"add developer\" - add a developer to your team"

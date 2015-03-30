@@ -1,4 +1,3 @@
-
 class Employee
 
 public
@@ -17,8 +16,6 @@ public
 		@days=0
 		@worktime=0
 	end
-
-
 
 	def hourly_wage(wage)
 		@wage=wage
@@ -41,6 +38,5 @@ public
 		member_of=assambled_teams.select { |team| team.has_member?(@id) }
 		member_of.length
 	end
-
 end
 

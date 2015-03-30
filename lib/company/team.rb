@@ -5,7 +5,8 @@ require_relative '../employees/employee.rb'
 class Team
 
 private
-
+# code_lines - in real case, number of lines of code is not objective, you can use number of stories in sprint
+# number of tests makes sense
 	def set_requirements(sprints,code_lines,tests)
 		@goal["sprints"]=sprints
 		@goal["code_lines"]=code_lines
@@ -35,7 +36,6 @@ public
 		@testers=[]
 		@goal={"sprints" => 0, "code_lines" => 0, "tests" => 0 }
 	end
-
 
 	def assign_manager(manager)
 		@manager=manager

@@ -1,9 +1,6 @@
 require_relative './team'
 
-
-
 class Company
-
 	attr_reader :company_name
 	attr_reader :employees
 	attr_reader :teams
@@ -13,7 +10,6 @@ class Company
 		@employees = []
 		@teams = []
 	end
-
 
 	def add_team_and_project(team)
 		@teams << team
@@ -41,11 +37,9 @@ class Company
 		@teams.select { |team| team.project_name == project_name }[0]
 	end
 
-
 	def find_team_by_name(team_name)
 		@teams.select { |project_team| project_team.team_name == team_name }[0]
 	end
-
 
 	def find_employee(employee_id)
 		selected=@employees.select { |emp| emp.id==employee_id }

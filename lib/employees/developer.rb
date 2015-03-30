@@ -19,13 +19,12 @@ class Developer < Employee
 		@languages << language
 	end
 
+# We can avoid this method as its result does not go in any further calculation?
 	def write_code(amount_of_code)
 		rand(amount_of_code) 
 	end
 
-
 	def calculate_pay(working_at=nil)
 		super + @wage*0.3*@languages.length + @wage*0.1*get_number_of_assigned_projects(working_at.teams)
 	end
-
 end

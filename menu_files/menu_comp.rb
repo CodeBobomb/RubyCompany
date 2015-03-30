@@ -67,8 +67,7 @@ private
 		print "\nEnter project name: "
 		project_name=gets.chomp
 		team=@company.find_team_by_project(project_name)
-		team_menu(team)
-		
+		team_menu(team)	
 	end
 
 	def remove_project
