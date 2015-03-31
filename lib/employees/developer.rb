@@ -19,13 +19,13 @@ class Developer < Employee
 		@languages << language
 	end
 
-	def write_code(amount_of_code)
-		rand(amount_of_code) 
+	def write_code(amount_of_code,language)
+		[language,rand(amount_of_code)] 
 	end
 
 
 	def calculate_pay(working_at=nil)
-		super + @wage*0.3*@languages.length + @wage*0.1*get_number_of_assigned_projects(working_at.teams)
+		super + @wage*0.3*@languages.length + @wage*0.1*working_at.member_of_teams
 	end
 
 end

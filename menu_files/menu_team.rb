@@ -10,12 +10,13 @@ private
 
 	
 	def write_team_menu
-		puts "\n\nTeam #{team.team_name} project #{team.project_name} enter one of the commands: "
+		puts "\n\nTeam #{@team.team_name} project #{@team.project_name} enter one of the commands: "
 		puts "\"assing manager\" - assing a manager to your team"
 		puts "\"add developer\" - add a developer to your team"
 		puts "\"add tester \" - add a tester to your team"
 		puts "\"set goal\" - set goals for the team"
-		puts "\"do sprint\" - perform sprints" 
+		puts "\"do sprint\" - complete sprint stories"
+		puts "\"list members\" - list all team members" 
 		command=gets.chomp
 		command.downcase!
 		execute_team_comm(command)
@@ -53,11 +54,13 @@ private
 			num_sprints.to_i!
 			work_done=@team.do_sprint(num_sprints)
 			puts "Team has done #{work_done[0]} sprints, wrote #{work_done[1]} lines of code and performed #{work_done[2]} tests. "
+		when "list members"
+			@team.list_members
 		when "exit"
 			@team=nil
 			return
 		end
-		write_tester_menu
+			write_team_menu
 	end
 
 

@@ -39,8 +39,11 @@ class Company
 
 	def find_team_by_project(project_name)
 		@teams.select { |team| team.project_name == project_name }[0]
-	end
+	end	
 
+	def member_of_teams(employee_id)
+		@teams.select { |team| team.has_member(employee_id)}
+	end
 
 	def find_team_by_name(team_name)
 		@teams.select { |project_team| project_team.team_name == team_name }[0]

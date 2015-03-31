@@ -49,18 +49,27 @@ private
 		end
 	end
 
+	def change_employee(employee)
+		employee_menu(employee)
+	end
+
+
 	def add_project
 		puts "\nNew team and project menu."
 		print "Enter project name: "
 		@company.add_project_and_team(Team.new(project_name))	
 	end
 
-	def select_employee
+	def select_employee(change=false)
 		print "\nEnter employee id: "
 		emp_id=gets.chomp
 		emp_id=emp_id.to_i
 		emp=@company.find_employee(emp_id)
-		select_menu(emp)
+		unless change
+			select_menu(emp)
+		else
+			change_employee(emp)
+		end
 	end
 
 	def select_team
@@ -88,6 +97,7 @@ private
 		puts "\"Add employee\" - if you want to enter a new employee"
 		puts "\"Add project\" - if you want to create a project and a team for that project"
 		puts "\"Select employee\" - if you want to select an employee"
+		puts "\"Change employee\" - if you want to change employee data"		
 		puts "\"Select team\" - if you want to select a team"
 		puts "\"Remove project\" - if you want to remove a project"
 		puts "\"Remove finished\" - clean up and remove finished projects"
@@ -105,6 +115,8 @@ private
 				add_project
 			when "select employee"
 				select_employee
+			when "change employee"
+				select_employee(true)
 			when "select team"
 				select_team
 			when "remove project"

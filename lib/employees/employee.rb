@@ -4,9 +4,9 @@ class Employee
 public
 	attr_accessor :first_name
 	attr_accessor :last_name
-	attr_reader :wage
-	attr_reader :days
-	attr_reader :worktime
+	attr_accessor :wage
+	attr_accessor :workdays
+	attr_accessor :worktime
 	attr_reader :id
 
 	def initialize(first, last, id=0)
@@ -14,7 +14,7 @@ public
 		@last_name=last
 		@id=id
 		@wage=0
-		@days=0
+		@workdays=0
 		@worktime=0
 	end
 
@@ -25,7 +25,7 @@ public
 	end
 
 	def working_day(days)
-		@days=days
+		@workdays=days
 	end
 
 	def worktime(hours)
@@ -33,7 +33,7 @@ public
 	end
 
 	def calculate_pay(working_at=nil)
-		@wage*@days*@worktime
+		@wage*@workdays*@worktime
 	end
 
 	def get_number_of_assigned_projects(assambled_teams=nil)

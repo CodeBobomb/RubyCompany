@@ -9,6 +9,7 @@ require_relative './menu_files/menu_man'
 require_relative './menu_files/menu_dev'
 require_relative './menu_files/menu_tester'
 require_relative './menu_files/menu_team'
+require_relative './menu_files/menu_emp'
 
 
 class Menu
