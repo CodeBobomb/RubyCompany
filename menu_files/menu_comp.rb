@@ -53,11 +53,27 @@ private
 		employee_menu(employee)
 	end
 
+	def list_projects
+		puts "Projects: "
+		@company.teams.each { |team| puts "Project: #{team.project_name}, team name: #{team.team_name} " }
+	end
+
+	def list_employees
+		puts "Managers: "
+		@company.employees.select { |emp| emp.class.name=="Manager" }.each { |man| puts "#{man.first_name} #{man.last_name} id: #{man.id} " }
+		puts "Developers: "
+		@company.employees.select { |emp| emp.class.name=="Developer" }.each { |dev| puts "#{dev.first_name} #{dev.last_name} id: #{dev.id} " }
+		puts "Testers: "
+		@company.employees.select { |emp| emp.class.name=="Tester" }.each { |tester| puts "#{tester.first_name} #{tester.last_name} id: #{tester.id} " }
+		puts ""	
+	end
+
 
 	def add_project
 		puts "\nNew team and project menu."
 		print "Enter project name: "
-		@company.add_project_and_team(Team.new(project_name))	
+		project_name=gets.chomp
+		@company.add_team_and_project(Team.new(project_name))	
 	end
 
 	def select_employee(change=false)
@@ -97,9 +113,11 @@ private
 		puts "\"Add employee\" - if you want to enter a new employee"
 		puts "\"Add project\" - if you want to create a project and a team for that project"
 		puts "\"Select employee\" - if you want to select an employee"
-		puts "\"Change employee\" - if you want to change employee data"		
+		puts "\"Change employee\" - if you want to change employee data"
+		puts "\"List employees\" - if you want to list all the employees"		
 		puts "\"Select team\" - if you want to select a team"
 		puts "\"Remove project\" - if you want to remove a project"
+		puts "\"List projects\" - if you want to list all active projects."
 		puts "\"Remove finished\" - clean up and remove finished projects"
 		print "\nYour command: "
 		command=gets.chomp
@@ -117,10 +135,14 @@ private
 				select_employee
 			when "change employee"
 				select_employee(true)
+			when "list employees"
+				list_employees
 			when "select team"
 				select_team
 			when "remove project"
 				remove_project
+			when "list projects"
+				list_projects
 			when "remove finished"
 				remove_finished
 			else 
