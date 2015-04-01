@@ -73,7 +73,7 @@ private
 		puts "\nNew team and project menu."
 		print "Enter project name: "
 		project_name=gets.chomp
-		@company.add_team_and_project(Team.new(project_name))	
+		@company.add_team_and_project	(Team.new(project_name))	
 	end
 
 	def select_employee(change=false)

@@ -8,7 +8,7 @@ private
 
 	def set_requirements(stories,code_lines,tests)
 		@goal["stories"]=stories
-		@goal["code_lines"]=code_lines
+		@goal["tasks"]=code_lines
 		@goal["tests"]=tests
 	end
 
@@ -33,7 +33,8 @@ public
 		@manager=nil
 		@developers=[]
 		@testers=[]
-		@goal={"stories" => 0, "code_lines" => 0, "tests" => 0 }
+		@goal={"stories" => 0, "tasks" => 0, "tests" => 0 }
+		@goal_inc={"stories" => 0, "tasks" => 0, "tests" => 0 }
 	end
 
 
@@ -63,26 +64,24 @@ public
 	end
 
 	def goal_reached?
-		@goal["stories"]==0 && @goal["code_lines"]==0 && @goal["tests"]==0
+		@goal["stories"]==0 && @goal["tasks"]==0 && @goal["tests"]==0
 	end
 
-	def set_goal_for_sprint
-		sprint=@manager.create_sprints(self)
-		code_lines=@developers.length*(1000+rand(10))
-		tests=@testers.length*(100+rand(50))
-		set_requirements(sprints,code_lines,tests)
+	def set_goal_for_sprint(stories,tasks,tests)
+		set_requirements(stories,tasks,tests)
+		@goal_inc = {"stories" => 1, "tasks" => (tasks/stories).ceil, "tests" => (tests/stories).ceil }
 	end
 
 	def do_sprint(stories=1)
-		written_code=0
+		tasks_competed=0
 		written_tests=0
-		for i in 0..stories
-			@developers.each { |dev| written_code+=dev.write_code(@goal[1]/@developers.length) }
-			@testers.each { |tester| written_tests+=tester.write_tests(@goal[2]/@testers.length) }
+		for i in 1..stories
+			@developers.each { |dev| tasks_competed+=dev.complete_tasks(@goal_inc["tasks"]) }
+			@testers.each { |tester| written_tests+=tester.write_tests(@goal_inc["tests"]) }
 		end
 
-		update_goal(stories, written_code,written_tests)
-		[sprints,written_code,written_tests]
+		update_goal(stories, tasks_competed, written_tests)
+		[sprints, tasks_competed, written_tests]
 	end
 
 	def add_member(employee)

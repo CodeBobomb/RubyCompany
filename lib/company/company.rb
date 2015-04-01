@@ -60,12 +60,13 @@ class Company
 	end
 
 	def list_employees
+		puts @employees.length
 		@employees.each { |emp| puts "#{emp.id}"}
 	end
 
 	def assign_to_project(project_name, employee_id)
 		team = find_team_by_project(project_name)
-		employee=employees.bsearch { |emp| emp.id==id }
-		team.add_member(emp)
+		emp=employees.select { |emp| emp.id==employee_id }
+		team.add_member(emp[0])
 	end
 end

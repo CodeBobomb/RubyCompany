@@ -7,6 +7,7 @@ class Developer < Employee
 	def initialize(first, last, id=0)
 		super(first,last,id)
 		@languages=[]
+		@number_of_tasks=0
 	end
 
 	def list_languages
@@ -19,13 +20,14 @@ class Developer < Employee
 		@languages << language
 	end
 
-	def write_code(amount_of_code,language)
-		[language,rand(amount_of_code)] 
+	def complete_tasks(number_of_tasks,language=nil)
+		@tasks_competed+=number_of_tasks
+		[number_of_tasks, language] 
 	end
 
 
 	def calculate_pay(working_at=nil)
-		super + @wage*0.3*@languages.length + @wage*0.1*working_at.member_of_teams
+		super + @wage*0.3*@languages.length + @wage*0.1*working_at.member_of_teams(@id) +@wage*0.1*@complete_tasks
 	end
 
 end

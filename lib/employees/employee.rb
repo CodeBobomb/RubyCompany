@@ -35,12 +35,5 @@ public
 	def calculate_pay(working_at=nil)
 		@wage*@workdays*@worktime
 	end
-
-	def get_number_of_assigned_projects(assambled_teams=nil)
-		return 0 if assambled_teams.nil?
-		member_of=assambled_teams.select { |team| team.has_member?(@id) }
-		member_of.length
-	end
-
 end
 
