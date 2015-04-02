@@ -42,7 +42,7 @@ class Company
 	end	
 
 	def member_of_teams(employee_id)
-		@teams.select { |team| team.has_member(employee_id)}
+		@teams.select { |team| team.has_member?(employee_id)}
 	end
 
 	def find_team_by_name(team_name)

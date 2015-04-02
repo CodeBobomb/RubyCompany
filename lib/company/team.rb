@@ -38,8 +38,8 @@ public
 
 	def initialize(project_name,team_name="")
 		@project_name=project_name
-		@team_name=project_name + " team" if team_name!="team"
-		@team_name=team_name unless team_name!="team"
+		@team_name=project_name + " team" if team_name==""
+		@team_name=team_name unless team_name==""
 		@manager=nil
 		@developers=[]
 		@testers=[]

@@ -7,6 +7,6 @@ require_relative './lib/employees/employee'
 require_relative './lib/employees/manager'
 require_relative './menu'
 
-menu = Menu.new
+company=CompanyCreator.create_company
 
-menu.company_menu
+company.list_employees
