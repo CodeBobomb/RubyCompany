@@ -3,11 +3,11 @@ require_relative './employee'
 class Manager < Employee
 
 	attr_reader :projects
-	attr_accessor :completed_stories
+	attr_reader :completed_stories
 
 	def initialize(first, last, id=0)
 		super(first,last,id)
-		@stories_completed=0
+		@completed_stories=0
 		@stories_required=0
 	end
 
@@ -15,10 +15,9 @@ class Manager < Employee
 		@stories_required=number_of_stories
 	end
 
-	def stories_completed(number_of_stories)
+	def completed_stories=(number_of_stories)
 		@completed_stories+=number_of_stories
 		@stories_required-=number_of_stories
-		number_of_stories
 	end
 
 	def calculate_pay(working_at=nil)

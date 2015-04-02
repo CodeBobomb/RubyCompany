@@ -3,7 +3,7 @@ require_relative "../../lib/company/company_creator"
 
 
 
-describe "adding employee to the company" do
+describe "adding employee to the company " do
 
 	before :all do
 		@company=CompanyCreator.create_company
@@ -36,7 +36,6 @@ describe "adding employee to the company" do
 		it "raise error" do
 			expect(company.add_employee(@existing_emp)).to raise_error
 		end
-
 	end
 end
 

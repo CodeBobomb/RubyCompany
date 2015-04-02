@@ -4,9 +4,9 @@ class Employee
 public
 	attr_accessor :first_name
 	attr_accessor :last_name
-	attr_accessor :wage
-	attr_accessor :workdays
-	attr_accessor :worktime
+	attr_reader :wage
+	attr_reader :workdays
+	attr_reader :worktime
 	attr_reader :id
 
 	def initialize(first, last, id=0)
@@ -20,15 +20,15 @@ public
 
 
 
-	def hourly_wage(wage)
+	def wage=(wage)
 		@wage=wage
 	end
 
-	def working_day(days)
+	def workdays=(days)
 		@workdays=days
 	end
 
-	def worktime(hours)
+	def worktime=(hours)
 		@worktime=hours
 	end
 

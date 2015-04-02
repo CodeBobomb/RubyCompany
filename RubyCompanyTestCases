@@ -1,12 +1,12 @@
 Test Cases:
 
-	Adding Employee (Manager/Developer/Tester) 
-	Setting salary parametars for employee (wage, worktime, workdays)
+	Adding Employee (Manager/Developer/Tester) +
+	Setting salary parametars for employee (wage, worktime, workdays) +
 	Adding programming language for Developer
-	Adding a team/project
-	Adding team members
-	Setting team goals
-	Doing created stories
+	Adding a team/project +
+	Adding team members +
+	Setting team goals +
+	Doing created stories+
 	Finding employee by id
 	Finding project by project name
 	Finding project by team name

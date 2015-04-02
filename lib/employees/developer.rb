@@ -3,10 +3,12 @@ require_relative './employee'
 class Developer < Employee
 
 	attr_reader :languages
+	attr_reader :tasks_competed
 
 	def initialize(first, last, id=0)
 		super(first,last,id)
 		@languages=[]
+		@tasks_competed=0;
 		@number_of_tasks=0
 	end
 
@@ -22,7 +24,7 @@ class Developer < Employee
 
 	def complete_tasks(number_of_tasks,language=nil)
 		@tasks_competed+=number_of_tasks
-		[number_of_tasks, language] 
+		number_of_tasks 
 	end
 
 
