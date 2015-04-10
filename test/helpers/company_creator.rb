@@ -1,9 +1,9 @@
-require_relative './company'
-require_relative './team'
-require_relative '../employees/developer'
-require_relative '../employees/tester'
-require_relative '../employees/employee'
-require_relative '../employees/manager'
+require_relative '../../lib/company/company'
+require_relative '../../lib/company/team'
+require_relative '../../lib/employees/developer'
+require_relative '../../lib/employees/tester'
+require_relative '../../lib/employees/employee'
+require_relative '../../lib/employees/manager'
 
 
 class CompanyCreator 

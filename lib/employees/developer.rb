@@ -27,9 +27,13 @@ class Developer < Employee
 		number_of_tasks 
 	end
 
+	def find_language(language)
+		@languages.select { |lang| lang==language }[0]
+	end
+
 
 	def calculate_pay(working_at=nil)
-		super + @wage*0.3*@languages.length + @wage*0.1*working_at.member_of_teams(@id) +@wage*0.1*@complete_tasks
+		super + @wage*0.3*@languages.length + @wage*0.1*working_at.member_of_teams(@id).length + @wage*0.1*@tasks_competed
 	end
 
 end

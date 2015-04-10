@@ -12,8 +12,9 @@ Test Cases:
 	Finding project by team name+
 	Finding acitve projects of an emplyoee+
 	Listing all Employees
-	Removing projects
-	Assigning employees to projects
-	Removing finished projects
+	Removing projects+
+	Assigning employees to projects+
+	Removing finished projects+
+
 
 

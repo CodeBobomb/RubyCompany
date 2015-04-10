@@ -2,8 +2,8 @@
 class Employee
 
 public
-	attr_accessor :first_name
-	attr_accessor :last_name
+	attr_reader :first_name
+	attr_reader :last_name
 	attr_reader :wage
 	attr_reader :workdays
 	attr_reader :worktime
@@ -18,7 +18,13 @@ public
 		@worktime=0
 	end
 
+	def first_name=(fname)
+		@first_name=fname
+	end
 
+	def last_name=(lname)
+		@last_name=lname
+	end
 
 	def wage=(wage)
 		@wage=wage
@@ -32,7 +38,7 @@ public
 		@worktime=hours
 	end
 
-	def calculate_pay(working_at=nil)
+	def calculate_pay(working_at)
 		@wage*@workdays*@worktime
 	end
 end
