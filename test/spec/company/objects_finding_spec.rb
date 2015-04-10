@@ -12,7 +12,7 @@ describe "finding employees/teams/projects in company object" do
 	end
 
 	context "Find employee by non-existing id: 123" do
-		it "did not found employee" do
+		it "did not find employee" do
 			emp=company.find_employee(123)
 			expect(emp.nil?).to be_truthy
 		end
