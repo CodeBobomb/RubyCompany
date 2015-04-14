@@ -17,7 +17,7 @@ describe "Adding a team/project to existing company " do
 	context "Add existing team/project: Android" do
 		let(:team) { @company.teams[0] }
 		it "team adding failed" do
-			expect(@company.add_team_and_project(team)).to raise_error
+			expect{ @company.add_team_and_project(team) }.to raise_error
 		end
 	end
 end

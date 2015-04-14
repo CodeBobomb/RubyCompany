@@ -18,19 +18,19 @@ describe "Configuring emplyoee atrributes " do
 	
 	context "Enter invalid employee wage:-1" do
 		it "wage entering failed" do
-			expect(@emp.wage=-1).to raise_error
+			expect{ @emp.wage=-1 }.to raise_error
 		end
 	end
 
 	context "Enter invalid employee workdays:-1" do
 		it "workdays entering failed" do
-			expect(@emp.workdays=-1).to raise_error
+			expect{ @emp.workdays=-1 }.to raise_error
 		end
 	end
 
 	context "Enter invalid employee worktime: -1" do
 		it "worktime entering failed" do
-			expect(@emp.worktime=-1).to raise_error
+			expect{ @emp.worktime=-1 }.to raise_error
 		end
 	end
 end

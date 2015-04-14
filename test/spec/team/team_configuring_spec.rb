@@ -16,7 +16,7 @@ describe "Configuring team goals for existing team" do
 
 	context "Setting goals to invalid values: stories:-1, tasks:-1, tests:-1" do
 		it "goals setting failed" do
-			expect(@team.set_goal_for_sprint(-1,-1,-1)).to raise_error
+			expect{ @team.set_goal_for_sprint(-1,-1,-1) }.to raise_error
 		end
 	end
 end

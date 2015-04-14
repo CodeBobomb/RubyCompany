@@ -38,7 +38,7 @@ describe "Doing created stories " do
 
 	context "Complete invalid number (-1) of stories" do
 		it "doing stories failed" do
-			expect(@team.do_sprint(-1)).to raise_error
+			expect{ @team.do_sprint(-1) }.to raise_error
 		end
 	end
 

@@ -31,13 +31,13 @@ describe "Managing projects in company " do
 
 	context "Assigning new team member(tester id:35) to a nonexisting team: WindowsPhone" do
 		it "team member assigning failed" do
-			expect(@company.assign_to_project("WindowsPhone",35)).to raise_error
+			expect{ @company.assign_to_project("WindowsPhone",35) }.to raise_error
 		end
 	end
 
 	context "Assingning a nonexisting employee (tester id:123) to team: Android" do
 		it "team member assinging failed" do
-			expect(@company.assign_to_project("Android",123)).to raise_error
+			expect{ @company.assign_to_project("Android",123) }.to raise_error
 		end
 	end
 end

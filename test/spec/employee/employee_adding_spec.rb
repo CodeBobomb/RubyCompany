@@ -20,7 +20,7 @@ describe "adding employees to the company object " do
 	context "Addin developer with existing id: 10" do
 		let(:existing_emp) {Employee.new("John","Doe",10)}
 		it "error raised" do
-			expect(@company.add_employee(@existing_emp)).to raise_error
+			expect{ @company.add_employee(existing_emp) }.to raise_error
 		end
 	end
 end

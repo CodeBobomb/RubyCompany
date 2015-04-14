@@ -1,8 +1,9 @@
 #!/bin/bash
-sudo rm -rf ~/RubyCompany
-sudo git clone https://github.com/CodeBobomb/RubyCompany.git
-sudo mv RubyCompany ~/
-sudo chmod -R 777 ~/RubyCompany/
-cd ~/RubyCompany/test/config/
-ruby build_increment.rb
-cd ~/RubyCompany/test
+#SCRIPT NOT FINISHED!
+if [ -d  ~/"RubyCompany" ]; then
+	if [ -d ~/"RubyCompany/.git" ]; then
+		echo "Trying to pull the latest build"
+		git pull
+		ruby ~/"RubyCompany/test/config/build_increment.rb"
+	fi
+fi
