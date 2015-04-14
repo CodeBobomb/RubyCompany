@@ -19,14 +19,11 @@ class Developer < Employee
 	end
 
 	def add_language(language)
-		raise ArgumentError, "Provided object is not a string" if language.class.name!="String"
-		raise ArgumentError, "Language is already in the list" if !(find_language(language).nil?)
 		@languages << language
 	end
 
-	def complete_tasks(number_of_tasks)
-		raise ArgumentError,"Number of tasks must be a positive nonzero number" if number_of_tasks<1
-			@tasks_competed+=number_of_tasks
+	def complete_tasks(number_of_tasks,language=nil)
+		@tasks_competed+=number_of_tasks
 		number_of_tasks 
 	end
 

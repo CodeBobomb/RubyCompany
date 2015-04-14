@@ -27,17 +27,14 @@ public
 	end
 
 	def wage=(wage)
-		raise ArgumentError "Wage must be postive nonzero number" if wage<0
 		@wage=wage
 	end
 
 	def workdays=(days)
-		raise ArgumentError "Workdays must be between 0 and 7" if days<0 || days>7
 		@workdays=days
 	end
 
 	def worktime=(hours)
-		raise ArgumentError "Worktime must be between 0 and 24" if hours<0 || hours>24
 		@worktime=hours
 	end
 

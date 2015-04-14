@@ -16,7 +16,6 @@ class Company
 
 
 	def add_team_and_project(team)
-		raise ArgumentError "Team already exists" unless find_team_by_project(team.project_name).nil?
 		@teams << team
 	end
 
@@ -57,7 +56,6 @@ class Company
 	end
 
 	def add_employee(employee)
-		raise ArgumentError "Employee with entered ID already exists" unless find_employee(employee.id).nil?
 		@employees << employee
 	end
 
@@ -68,9 +66,7 @@ class Company
 
 	def assign_to_project(project_name, employee_id)
 		team = find_team_by_project(project_name)
-		raise ArgumentError,"Project not found" if team.nil?
 		emp=employees.select { |emp| emp.id==employee_id }
-		raise ArgumentError,"Employee not found" if emp[0].nil?
 		team.add_member(emp[0])
 	end
 end

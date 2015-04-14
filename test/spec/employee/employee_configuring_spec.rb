@@ -1,9 +1,9 @@
 require_relative "../../helpers/company_creator"
 
-describe "Configuring emplyoee atrributes " do
+describe "Configuring emplyoee attributes " do
 
 # Ima li razloga da prije svakog contexta pravis novi Employee objekat?
-	before :each do
+	before :all do
 		@emp=Employee.new("John","Doe",1)
 	end
 

@@ -80,14 +80,12 @@ public
 	end
 
 	def set_goal_for_sprint(stories,tasks,tests)
-		raise ArgumentError "Invalid values for goal requirements" if stories<1 || tasks<1 || tests<1
 		set_requirements(stories,tasks,tests)
 		@manager.set_number_of_stories(stories)
 		@goal_inc = {"stories" => 1, "tasks" => (tasks/stories).ceil, "tests" => (tests/stories).ceil }
 	end
 
 	def do_sprint(stories=1)
-		raise ArgumentError, "Invalid number of stories" if stories<1
 		tasks_competed=0
 		written_tests=0
 		if stories > goal["stories"]
@@ -103,7 +101,6 @@ public
 	end
 
 	def add_member(employee)
-		raise ArgumentError "Employee already in the team" if has_member?(employee.id)
 		case employee.class.name		
 		when "Developer"
 			add_developer(employee)
@@ -112,12 +109,12 @@ public
 		when "Manager"
 			assign_manager(employee)
 		else
-			raise_error ArgumentError, "Not an Employee object"
+			puts "nope"
 		end
 	end
 
 	def has_member?(employee_id)
-		found=(!(@manager.nil?) && @manager.id==employee_id) || @developers.select { |dev| dev.id==employee_id }[0] || @testers.select { |tester| tester.id==employee_id }[0]
+		found=(!(@manager.id.nil?) && @manager.id==employee_id) || @developers.select { |dev| dev.id==employee_id }[0] || @testers.select { |tester| tester.id==employee_id }[0]
 		!found.nil?
 	end
 
