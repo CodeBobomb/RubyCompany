@@ -35,7 +35,7 @@ public
 		raise ArgumentError "Workdays must be between 0 and 7" if days<0 || days>7
 		@workdays=days
 	end
-
+	
 	def worktime=(hours)
 		raise ArgumentError "Worktime must be between 0 and 24" if hours<0 || hours>24
 		@worktime=hours
