@@ -1,5 +1,5 @@
 require_relative "../../helpers/company_creator"
-
+#comment
 describe "Doing created stories " do
 	
 	before :each do
