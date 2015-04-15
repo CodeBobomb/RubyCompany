@@ -1,5 +1,5 @@
 require_relative "../../helpers/company_creator"
-
+#
 describe "Managing projects in company " do
 	
 	before :each do
