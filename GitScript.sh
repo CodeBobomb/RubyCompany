@@ -29,6 +29,7 @@ if [ -d  ~/"RubyCompany"  ] && [ -d ~/"RubyCompany/.git" ];
 	echo "Trying to pull the latest build"
 	cd ~/RubyCompany
 	output=$(git pull)
+	echo $output
 	check="Already up-to-date."
 	if [ "$output"=="$check" ]
 	then
