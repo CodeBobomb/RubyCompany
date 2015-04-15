@@ -1,6 +1,7 @@
 require_relative "../../helpers/company_creator"
 
 describe "Doing created stories " do
+	
 	before :each do
 		@company=CompanyCreator.create_company
 		@team=@company.teams[0]

@@ -10,7 +10,7 @@ require_relative './menu_files/menu_dev'
 require_relative './menu_files/menu_tester'
 require_relative './menu_files/menu_team'
 require_relative './menu_files/menu_emp'
-
+require_relative './test/helpers/company_creator'
 
 class Menu
 
@@ -18,19 +18,7 @@ private
 
 	
 	def init
-		@company=Company.new("RubyCompany")
-		dev=Developer.new("John","Doe",1)
-		tester=Tester.new("John","Toe",2)
-		man=Manager.new("John","Moe",3)
-		tmp=Team.new("Testing")
-		tmp.add_developer(dev)
-		tmp.add_tester(tester)
-		tmp.assign_manager(man)
-
-		@company.add_team_and_project(tmp)
-		@company.add_employee(dev)
-		@company.add_employee(tester)
-		@company.add_employee(man)
+		@company=CompanyCreator.create_company
 
 	end
 

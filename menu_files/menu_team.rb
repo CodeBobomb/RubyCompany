@@ -48,23 +48,23 @@ private
 			@team.add_developer(tester)
 			puts "Tester #{tester.first_name} #{tester.last_name} id:#{tester.id} assigned as the manager of team #{@team.team_name}"
 		when "set goal"
-			@team.set_goal_for_project
-			puts "Goal set with #{@team.goal["sprints"]} sprints, #{@team.goal["code_lines"]} code lines, #{@team.goal[tests]} tests in plan"
+			@team.set_goal_for_sprint
+			puts "Goal set with #{@team.goal["sprints"]} sprints, #{@team.goal["tasks"]} tasks, #{@team.goal[tests]} tests in plan"
 		when "status"
 			unless @team.goal_reached?
 				puts "Status: In progress. "
 				puts "Stories left: #{@team.goal[0]}"
-				puts "Code lines required: #{@team.goal[1]}"
+				puts "Tasks required: #{@team.goal[1]}"
 				puts "Test Cases left: #{@team.goal[2]}"
 			else
 				puts "Status: Finished"
 			end
 		when "do sprint"
-			print "Enter number of sprints you want to do: "
+			print "Enter number of stories you want to do: "
 			num_sprints=gets.chomp
 			num_sprints.to_i!
-			work_done=@team.do_sprint(num_sprints)
-			puts "Team has done #{work_done[0]} sprints, wrote #{work_done[1]} lines of code and performed #{work_done[2]} tests. "
+			work_done=@team.do_sprint(stories)
+			puts "Team has done #{work_done[0]} sprints, has done #{work_done[1]} tasks and performed #{work_done[2]} tests. "
 		when "list members"
 			@team.list_members
 		when "exit"

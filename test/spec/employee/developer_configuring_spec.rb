@@ -2,10 +2,9 @@ require_relative "../../helpers/company_creator"
 
 describe "Configuring developer" do
 
-	before :all do
+	before :each do
 		@dev=Developer.new("John","Doe",1)
 	end
-
 
 	context "Add C++ to list of programming languages" do
 		it "language added" do
@@ -22,6 +21,9 @@ describe "Configuring developer" do
 	end
 
 	context "Find C++ in the list of programming languages" do
+		before do
+			@dev.add_language("C++")
+		end
 		it "language found" do
 			expect(@dev.find_language("C++")).to be_truthy
 		end
@@ -34,6 +36,9 @@ describe "Configuring developer" do
 	end
 
 	context "Add an existing language to list of programming languages" do
+		before do
+			@dev.add_language("C++")
+		end
 		it "language adding failed" do
 			expect{ @dev.add_language("C++") }.to raise_error
 		end

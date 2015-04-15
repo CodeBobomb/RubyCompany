@@ -1,6 +1,6 @@
 options:
   suite: "full regression" #this can be used in a setup where multiple projects share the same test results database 
-  build: "12345"
+  build: "0.9.0"
 dbconnection:
   adapter: postgresql
   database:  rspec

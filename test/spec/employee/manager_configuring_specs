@@ -1,0 +1,40 @@
+require_relative "../../helpers/company_creator"
+
+describe "Configuring manager" do
+
+	before :all do
+		@man=Manager.new("John","Moe",1)
+	end
+
+	context "Set number of required stories: 5" do
+		it "number of stories set to 5" do
+			@man.set_number_of_stories(5)
+			expect(@man.stories_required).to eql(5)
+		end
+	end
+
+	context "Set completed stories: 3" do
+		it "completed stories set to 3" do
+			@man.completed_stories=3
+			expect(@man.completed_stories).to eql(3)
+		end
+	end
+
+	context "Set invalid number of required stories: -1" do
+		it "setting required stories failed" do
+			expect{ @man.set_number_of_stories(-1) }.to raise_error
+		end
+	end
+
+	context "Set invalid value of completed stories: -1" do
+		it "setting completed stories failed" do
+			expect { @man.completed_stories(-1) }.to raise_error
+		end
+	end
+
+	context "Set completed stories to value bigger than required stories value" do
+		it "setting completed stories failed" do
+			expect { @man.completed_stories(10)}.to raise_error
+		end
+	end
+end
