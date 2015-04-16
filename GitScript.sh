@@ -31,7 +31,7 @@ if [ -d  ~/"RubyCompany"  ] && [ -d ~/"RubyCompany/.git" ];
 	output=$(git pull)
 	echo $output
 	check="Already up-to-date."
-	if [ "$output"=="$check" ]
+	if [[ $output==*"$check"* ]]
 	then
 		echo "No changes on remote"
 	else
